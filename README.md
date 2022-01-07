@@ -52,7 +52,7 @@ let
   sources = import ./nix/sources.nix {};
   pkgs = import sources.nixpkgs {};
 
-  ws = (import (pkgs.fetchGitHub { inherit (sources.tlg-workstation) owner repo rev sha256; })).outputs.packages."${builtings.currentSystem}";
+  ws = (import (pkgs.fetchFromGitHub { inherit (sources.tlg-workstation) owner repo rev sha256; })).outputs.packages."${builtins.currentSystem}";
 in
 {
   home.packages = [
@@ -61,7 +61,7 @@ in
 }
 ```
 
-**Updating:** Anytime you want to update what golang-webdev offers, run `niv update tlg-workstation` and rebuild your nix expression acccordingly.
+**Updating:** Anytime you want to update what workstation-deps offers, run `niv update tlg-workstation` and rebuild your nix expression acccordingly.
 
 [flakes]: https://github.com/NixOS/nix/blob/master/src/nix/flake.md
 [home-manager]: https://github.com/nix-community/home-manager
