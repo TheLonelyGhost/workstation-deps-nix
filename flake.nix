@@ -31,6 +31,7 @@
           tag = tag.outputs.defaultPackage."${system}";
           nixify = import ./packages/nixify.nix { inherit pkgs; };
           flakify = import ./packages/flakify.nix { inherit pkgs; };
+          g = import ./packages/g.nix { inherit pkgs; };
         };
       }
     );
