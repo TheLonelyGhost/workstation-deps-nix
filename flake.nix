@@ -32,6 +32,7 @@
           nixify = import ./packages/nixify.nix { inherit pkgs; };
           flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
+          git-ignore = import ./packages/git-ignore.nix { inherit pkgs; };
         };
       }
     );
