@@ -10,24 +10,28 @@
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, tag }:
     flake-utils.lib.eachDefaultSystem (
-      system: let
+      system:
+      let
         pkgs = import nixpkgs {
           inherit system;
         };
+        nixify = import ./packages/nixify.nix { inherit pkgs; };
+        flakify = import ./packages/flakify.nix { inherit pkgs; };
       in
-        {
-          devShell = pkgs.mkShell {
-            nativeBuildInputs = [
-              pkgs.bashInteractive
-              pkgs.gnumake
-              tag.outputs.defaultPackage."${system}"
-            ];
-            buildInputs = [];
-          };
+      {
+        devShell = pkgs.mkShell {
+          nativeBuildInputs = [
+            pkgs.bashInteractive
+            pkgs.gnumake
+          ];
+          buildInputs = [ ];
+        };
 
-          packages = {
-            tag = tag.outputs.defaultPackage."${system}";
-          };
-        }
+        packages = {
+          tag = tag.outputs.defaultPackage."${system}";
+          nixify = import ./packages/nixify.nix { inherit pkgs; };
+          flakify = import ./packages/flakify.nix { inherit pkgs; };
+        };
+      }
     );
 }
