@@ -15,8 +15,6 @@
         pkgs = import nixpkgs {
           inherit system;
         };
-        nixify = import ./packages/nixify.nix { inherit pkgs; };
-        flakify = import ./packages/flakify.nix { inherit pkgs; };
       in
       {
         devShell = pkgs.mkShell {
@@ -33,6 +31,7 @@
           flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
           git-ignore = import ./packages/git-ignore.nix { inherit pkgs; };
+          tat = import ./packages/tat.nix { inherit pkgs; };
         };
       }
     );
