@@ -17,7 +17,7 @@ pkgs.writeShellApplication {
         if ! tmux has-session -t "$session_name" >/dev/null 2>&1; then
           env TMUX="" tmux new-session -As "$session_name" -d
         fi
-        tmux switch-cliient -t "$session_name"
+        tmux switch-client -t "$session_name"
       fi
     }
 
