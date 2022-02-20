@@ -14,7 +14,19 @@
       let
         pkgs = import nixpkgs {
           inherit system;
+          config.allowUnsupportedSystem = true;
         };
+
+        thelonelyghost = {
+          name = "David Alexander";
+          email = "opensource@thelonelyghost.com";
+          github = "TheLonelyGhost";
+          githubId = 1276113;
+        };
+
+        npiperelay = import ./packages/npiperelay.nix { inherit pkgs thelonelyghost; };
+        wsl-ssh-agent-relay = import ./packages/wsl/ssh-agent-relay.nix { inherit pkgs npiperelay; };
+        wsl-keepassxc-relay = import ./packages/wsl/keepassxc-relay.nix { inherit pkgs npiperelay; };
       in
       {
         devShell = pkgs.mkShell {
@@ -31,7 +43,10 @@
           flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
           git-ignore = import ./packages/git-ignore.nix { inherit pkgs; };
+          git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
           tat = import ./packages/tat.nix { inherit pkgs; };
+
+          inherit npiperelay wsl-ssh-agent-relay wsl-keepassxc-relay;
         };
       }
     );
