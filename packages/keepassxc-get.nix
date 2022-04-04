@@ -36,6 +36,17 @@ pkgs.writeShellApplication {
     fi
   }
 
+  if [ $# -eq 0 ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    cat <<EOH
+DESCRIPTION: Retrieve credentials from the registered, open, KeePassXC database and output in JSON format
+
+USAGE: keepassxc-get <url> [<username>]
+
+EXAMPLE: keepassxc-get https://github.com octocat
+EOH
+    exit 0
+  fi
+
   if ! {
     printf 'url=%s\n' "''${1?URL for the secret you need}"
     if [ -n "''${2:-}" ]; then

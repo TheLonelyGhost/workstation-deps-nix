@@ -30,17 +30,12 @@
 
         git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
         keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
-
-	pbcopy = import ./packages/pbcopy.nix { inherit pkgs; };
-	pbpaste = import ./packages/pbpaste.nix { inherit pkgs; };
       in
       {
         devShell = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
-	    pbcopy
-	    pbpaste
           ];
           buildInputs = [ ];
         };
@@ -52,8 +47,8 @@
           g = import ./packages/g.nix { inherit pkgs; };
           git-ignore = import ./packages/git-ignore.nix { inherit pkgs; };
           tat = import ./packages/tat.nix { inherit pkgs; };
-	  pbcopy = import ./packages/pbcopy.nix { inherit pkgs; };
-	  pbpaste = import ./packages/pbpaste.nix { inherit pkgs; };
+          pbcopy = import ./packages/pbcopy.nix { inherit pkgs; };
+          pbpaste = import ./packages/pbpaste.nix { inherit pkgs; };
 
           inherit npiperelay wsl-ssh-agent-relay wsl-keepassxc-relay;
           inherit git-credential-keepassxc keepassxc-get;
