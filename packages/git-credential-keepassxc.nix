@@ -1,9 +1,10 @@
 { pkgs, thelonelyghost, ... }:
+# vim: set ts=2 sts=2 sw=2 et
 
 pkgs.rustPlatform.buildRustPackage {
   pname = "git-credential-keepassxc";
   version = "0.8.2";
-  buildFeatures = ["all"];
+  buildFeatures = [ "all" ];
 
   src = pkgs.fetchFromGitHub {
     owner = "Frederick888";
@@ -17,7 +18,7 @@ pkgs.rustPlatform.buildRustPackage {
   meta = {
     description = "Helper that allows Git (and shell scripts) to use KeePassXC as credential store";
     homepage = "https://github.com/Frederick888/git-credential-keepassxc";
-    maintainers = [thelonelyghost];
-    license = [pkgs.lib.licenses.gpl3];
+    maintainers = [ thelonelyghost ];
+    license = [ pkgs.lib.licenses.gpl3 ];
   };
 }

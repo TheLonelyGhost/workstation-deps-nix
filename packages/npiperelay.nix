@@ -1,4 +1,5 @@
 { pkgs, thelonelyghost, ... }:
+# vim: set ts=2 sts=2 sw=2 et
 
 let
   go-build = import ../lib/go-build.nix { inherit pkgs; };
@@ -44,29 +45,29 @@ pkgs.stdenv.mkDerivation {
   ];
 
   configurePhase = ''
-  runHook preConfigure
+    runHook preConfigure
 
-  export GOCACHE="$TMPDIR/go-cache"
-  export GOPATH="$TMPDIR/go"
+    export GOCACHE="$TMPDIR/go-cache"
+    export GOPATH="$TMPDIR/go"
 
-  runHook postConfigure
+    runHook postConfigure
   '';
 
   buildPhase = ''
-  runHook preBuild
+    runHook preBuild
 
-  go build -ldflags="-s -w" -o build/npiperelay.exe .
+    go build -ldflags="-s -w" -o build/npiperelay.exe .
 
-  runHook postBuild
+    runHook postBuild
   '';
 
   installPhase = ''
-  runHook preInstall
+    runHook preInstall
 
-  mkdir -p $out
-  cp -r ./build $out/bin
+    mkdir -p $out
+    cp -r ./build $out/bin
 
-  runHook postInstall
+    runHook postInstall
   '';
 
   GOFLAGS = [

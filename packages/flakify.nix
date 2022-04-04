@@ -1,4 +1,5 @@
 { pkgs }:
+# vim: set ts=2 sts=2 sw=2 et
 
 let
   flakeNixTemplate = builtins.readFile ../templates/flake.nix;
