@@ -15,6 +15,10 @@ pkgs.rustPlatform.buildRustPackage {
 
   cargoSha256 = "sha256-vltqwJXf5I7JF7kB/bOSh6b+OvODN3bWuDRAu8RsHnc=";
 
+  buildInputs = pkgs.lib.optionals pkgs.stdenv.isDarwin [
+    pkgs.darwin.IOKit
+  ];
+
   meta = {
     description = "Helper that allows Git (and shell scripts) to use KeePassXC as credential store";
     homepage = "https://github.com/Frederick888/git-credential-keepassxc";
