@@ -6,15 +6,18 @@
     url = "github:edolstra/flake-compat";
     flake = false;
   };
+  inputs.overlays.url = "github:thelonelyghost/blank-overlay-nix";
   inputs.tag.url = "github:thelonelyghost/tag";
+  inputs.tag.inputs.overlays.follows = "overlays";
 
-  outputs = { self, nixpkgs, flake-utils, flake-compat, tag }:
+  outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnsupportedSystem = true;
+          overlays = [overlays.overlays.default];
         };
 
         thelonelyghost = {

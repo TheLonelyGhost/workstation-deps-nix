@@ -94,11 +94,27 @@
         "type": "github"
       }
     },
+    "overlays": {
+      "locked": {
+        "lastModified": 1668714812,
+        "narHash": "sha256-9p9XjBWHnrYNlmfnIPnohBiSIPSVM9SbVKsHXIrWN1c=",
+        "owner": "thelonelyghost",
+        "repo": "blank-overlay-nix",
+        "rev": "8e18a869b1d2a09b479e5cb9230604da772f89c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thelonelyghost",
+        "repo": "blank-overlay-nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
+        "overlays": "overlays",
         "tag": "tag"
       }
     },
@@ -106,14 +122,17 @@
       "inputs": {
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "overlays": [
+          "overlays"
+        ]
       },
       "locked": {
-        "lastModified": 1641585893,
-        "narHash": "sha256-59ryx3kCKuPTnN8w4HzFs9Ucu24mQdHYf0ORU6MXGDE=",
+        "lastModified": 1668715048,
+        "narHash": "sha256-gTJ+BCuby68u2Ymrnyx4RV/g7lhZrOHk6Qqf+Ebimq0=",
         "owner": "thelonelyghost",
         "repo": "tag",
-        "rev": "acebd55789990c549d6e5296c52bfacbe93f2e40",
+        "rev": "7f0bf4ee031f9c3f421dc3609b763df63e765db3",
         "type": "github"
       },
       "original": {
