@@ -7,8 +7,11 @@
     flake = false;
   };
   inputs.overlays.url = "github:thelonelyghost/blank-overlay-nix";
+
   inputs.tag.url = "github:thelonelyghost/tag";
+  inputs.tag.inputs.nixpkgs.follows = "nixpkgs";
   inputs.tag.inputs.overlays.follows = "overlays";
+  inputs.tag.inputs.flake-utils.follows = "flake-compat";
   inputs.tag.inputs.flake-compat.follows = "flake-compat";
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
