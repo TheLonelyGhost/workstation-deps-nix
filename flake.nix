@@ -1,7 +1,7 @@
 {
   description = "Custom tools for nix-based workstations";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "flake:nixpkgs";
+  inputs.flake-utils.url = "flake:flake-utils";
   inputs.flake-compat = {
     url = "github:edolstra/flake-compat";
     flake = false;
