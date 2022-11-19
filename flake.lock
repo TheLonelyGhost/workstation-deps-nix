@@ -74,7 +74,7 @@
           "flake-compat"
         ],
         "flake-utils": [
-          "flake-compat"
+          "flake-utils"
         ],
         "nixpkgs": [
           "nixpkgs"

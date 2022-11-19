@@ -15,13 +15,13 @@
   inputs.tag.inputs.flake-compat.follows = "flake-compat";
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
+    flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
+          # For npiperelay
           config.allowUnsupportedSystem = true;
-          overlays = [overlays.overlays.default];
+          overlays = [ overlays.overlays.default ];
         };
 
         thelonelyghost = {
@@ -37,20 +37,18 @@
 
         git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
         keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
-        tag-pkg = tag.outputs.defaultPackage."${system}";
       in
       {
         devShell = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
-            tag
           ];
           buildInputs = [ ];
         };
 
         packages = {
-          tag = tag-pkg;
+          tag = tag.defaultPackage."${system}";
           nixify = import ./packages/nixify.nix { inherit pkgs; };
           flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
