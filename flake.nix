@@ -11,7 +11,7 @@
   inputs.tag.url = "github:thelonelyghost/tag";
   inputs.tag.inputs.nixpkgs.follows = "nixpkgs";
   inputs.tag.inputs.overlays.follows = "overlays";
-  inputs.tag.inputs.flake-utils.follows = "flake-compat";
+  inputs.tag.inputs.flake-utils.follows = "flake-utils";
   inputs.tag.inputs.flake-compat.follows = "flake-compat";
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
@@ -37,18 +37,20 @@
 
         git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
         keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
+        tag-pkg = tag.outputs.defaultPackage."${system}";
       in
       {
         devShell = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
+            tag
           ];
           buildInputs = [ ];
         };
 
         packages = {
-          tag = tag.outputs.defaultPackage."${system}";
+          tag = tag-pkg;
           nixify = import ./packages/nixify.nix { inherit pkgs; };
           flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
