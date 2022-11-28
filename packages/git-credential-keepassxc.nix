@@ -7,7 +7,7 @@ pkgs.rustPlatform.buildRustPackage {
   buildFeatures = [
     "notification"
     "yubikey"
-    "strict-caller"
+    # "strict-caller"
   ];
 
   src = pkgs.fetchFromGitHub {
