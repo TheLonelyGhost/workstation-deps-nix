@@ -4,7 +4,11 @@
 pkgs.rustPlatform.buildRustPackage {
   pname = "git-credential-keepassxc";
   version = "0.8.2";
-  buildFeatures = [ "all" ];
+  buildFeatures = [
+    "notification"
+    "yubikey"
+    "strict-caller"
+  ];
 
   src = pkgs.fetchFromGitHub {
     owner = "Frederick888";
@@ -16,7 +20,8 @@ pkgs.rustPlatform.buildRustPackage {
   cargoSha256 = "sha256-vltqwJXf5I7JF7kB/bOSh6b+OvODN3bWuDRAu8RsHnc=";
 
   buildInputs = pkgs.lib.optionals pkgs.stdenv.isDarwin [
-    pkgs.darwin.IOKit
+    pkgs.darwin.Security
+    pkgs.darwin.apple_sdk.frameworks.Foundation
   ];
 
   meta = {
