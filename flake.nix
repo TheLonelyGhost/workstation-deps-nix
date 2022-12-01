@@ -43,6 +43,7 @@
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
+            tag.defaultPackage."${system}"
           ];
           buildInputs = [ ];
         };

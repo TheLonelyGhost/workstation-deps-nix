@@ -84,11 +84,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1668723885,
-        "narHash": "sha256-cQgSyjIOSsNRNOSc3VrfAux6aUCHvIhC9qsrte3+j40=",
+        "lastModified": 1669921892,
+        "narHash": "sha256-fHn/XaWOhofo6Cwd+iUsBuCo2YMBNKfOIiE4UdlIh5Y=",
         "owner": "thelonelyghost",
         "repo": "tag",
-        "rev": "1bf3ef96d74a469044114787562dcb2e0b137bac",
+        "rev": "fc37a646354fbcf5fe46d960362995892d4b3f64",
         "type": "github"
       },
       "original": {
