@@ -37,21 +37,20 @@
 
         git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
         keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
+        flakify = import ./packages/flakify.nix { inherit pkgs; };
       in
       {
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake
-            tag.defaultPackage."${system}"
+            flakify
           ];
           buildInputs = [ ];
         };
 
         packages = {
           tag = tag.defaultPackage."${system}";
-          nixify = import ./packages/nixify.nix { inherit pkgs; };
-          flakify = import ./packages/flakify.nix { inherit pkgs; };
           g = import ./packages/g.nix { inherit pkgs; };
           git-ignore = import ./packages/git-ignore.nix { inherit pkgs; };
           tat = import ./packages/tat.nix { inherit pkgs; };
@@ -60,7 +59,15 @@
 
           inherit npiperelay wsl-ssh-agent-relay wsl-keepassxc-relay;
           inherit git-credential-keepassxc keepassxc-get;
+          inherit flakify;
         };
       }
-    );
+    ) // {
+      templates.flakify = {
+        path = ./templates/flakify;
+        description = "A basic Flake workspace";
+        welcomeText = "";
+      };
+      templates.default = self.templates.flakify;
+    };
 }
