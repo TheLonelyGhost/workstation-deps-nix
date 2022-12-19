@@ -15,7 +15,7 @@
   inputs.tag.inputs.flake-compat.follows = "flake-compat";
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
-    flake-utils.lib.eachDefaultSystem (system:
+    (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -62,7 +62,7 @@
           inherit flakify;
         };
       }
-    ) // {
+    )) // {
       templates.flakify = {
         path = ./templates/flakify;
         description = "A basic Flake workspace";
