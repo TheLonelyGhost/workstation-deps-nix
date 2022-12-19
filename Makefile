@@ -1,5 +1,5 @@
 NIX := nix
-STATIX := statix
+STATIX := $(NIX) run nixpkgs\#statix --
 
 UPDATED_FLAKE_INPUTS = tag
 FLAKE_INPUTS = $(foreach i,$(UPDATED_FLAKE_INPUTS),--update-input $(i) )
