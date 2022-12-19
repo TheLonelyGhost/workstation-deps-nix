@@ -11,7 +11,7 @@ pkgs.writeShellApplication {
 
   text = ''
   # Defaults, if not set
-  : "''${FLAKIFY_URI:=github:thelonelyghost/workstation-deps-nix}"
+  : "''${FLAKIFY_URI:=github:thelonelyghost/workstation-deps-nix/main}"
   : "''${FLAKIFY_TEMPLATE:=default}"
 
   if [ ''$# -gt 0 ]; then
