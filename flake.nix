@@ -66,7 +66,6 @@
       templates.flakify = {
         path = ./templates/flakify;
         description = "A basic Flake workspace";
-        welcomeText = "";
       };
       templates.default = self.templates.flakify;
     };
