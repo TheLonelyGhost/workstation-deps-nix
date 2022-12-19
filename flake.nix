@@ -63,10 +63,17 @@
         };
       }
     )) // {
-      templates.flakify = {
-        path = ./templates/flakify;
-        description = "A basic Flake workspace";
+      templates.python = {
+        path = ./templates/python;
+        description = "Python project tooling";
       };
-      templates.default = self.templates.flakify;
+      templates.rust = {
+        path = ./templates/rust;
+        description = "Rust project tooling";
+      };
+      templates.default = {
+        path = ./templates/default;
+        description = "Flake-based project workspace (basic)";
+      };
     };
 }

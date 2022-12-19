@@ -23,6 +23,7 @@
         devShell = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
+            pkgs.rustup
           ];
           buildInputs = [
           ];
