@@ -73,7 +73,7 @@
       };
       templates.default = {
         path = ./templates/default;
-        description = "Flake-based project workspace (basic)";
+        description = "No fluff, basic project workspace";
       };
     };
 }
