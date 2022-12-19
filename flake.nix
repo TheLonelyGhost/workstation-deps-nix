@@ -39,7 +39,7 @@
         keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
       in
       {
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.bashInteractive
             pkgs.gnumake

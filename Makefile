@@ -1,12 +1,17 @@
+NIX := nix
+STATIX := statix
+
+UPDATED_FLAKE_INPUTS = tag
+FLAKE_INPUTS = $(foreach i,$(UPDATED_FLAKE_INPUTS),--update-input $(i) )
 
 .PHONY: test
 test:
-	nix flake check
+	$(STATIX) check
+	$(NIX) flake check
 
 .PHONY: update
 update:
-	@echo Not yet implemented
-	@exit 1
+	$(NIX) flake lock $(FLAKE_INPUTS)
 
 .PHONY: upgrade
 upgrade: update
