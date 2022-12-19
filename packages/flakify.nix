@@ -11,14 +11,14 @@ pkgs.writeShellApplication {
 
   text = ''
   # Defaults, if not set
-  : "''${FLAKIFY_URI:=github:thelonelyghost/workstation-deps-nix/main}"
+  : "''${FLAKIFY_URI:=github:thelonelyghost/workstation-deps-nix}"
   : "''${FLAKIFY_TEMPLATE:=default}"
 
   if [ ''$# -gt 0 ]; then
     FLAKIFY_TEMPLATE="''$1"
   fi
 
-  nix flake init -t "''${FLAKIFY_URI}#''${FLAKIFY_TEMPLATE}"
+  nix flake init --template "''${FLAKIFY_URI}#''${FLAKIFY_TEMPLATE}" --refresh
   if git rev-parse --git-dir &>/dev/null; then
     git add -f -N ./flake.nix ./default.nix ./flake.lock || true
   fi
