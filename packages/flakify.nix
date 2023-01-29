@@ -22,12 +22,14 @@ pkgs.writeShellApplication {
   if git rev-parse --git-dir &>/dev/null; then
     git add -f -N ./flake.nix ./default.nix ./flake.lock || true
   fi
-  direnv allow .
-
   if [ -n "''${EDITOR:-}" ]; then
     "''${EDITOR}" ./flake.nix
   else
     printf '\n\tWARNING: missing variable %q\n\n' "EDITOR" >&2
+  fi
+  if [ -e .envrc ]; then
+    # Open the .envrc file for editing so we can vet it instead of just blindly allowing execution
+    direnv edit .
   fi
   '';
 }
