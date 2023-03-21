@@ -24,8 +24,8 @@ pkgs.rustPlatform.buildRustPackage {
 
   buildInputs = pkgs.lib.optionals pkgs.stdenv.isDarwin [
     pkgs.darwin.Security
-    pkgs.darwin.apple_sdk.frameworks.Cocoa
-    pkgs.darwin.apple_sdk.frameworks.Foundation
+    pkgs.darwin.apple_sdk_11_0.frameworks.Cocoa
+    pkgs.darwin.apple_sdk_11_0.frameworks.Foundation
   ];
 
   meta = {
