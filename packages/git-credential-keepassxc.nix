@@ -1,9 +1,12 @@
 { pkgs, thelonelyghost, ... }:
 # vim: set ts=2 sts=2 sw=2 et
 
+let
+  version = "0.12.0";
+in
 pkgs.rustPlatform.buildRustPackage {
   pname = "git-credential-keepassxc";
-  version = "0.8.2";
+  inherit version;
   buildFeatures = [
     "notification"
     "yubikey"
@@ -13,11 +16,11 @@ pkgs.rustPlatform.buildRustPackage {
   src = pkgs.fetchFromGitHub {
     owner = "Frederick888";
     repo = "git-credential-keepassxc";
-    rev = "v0.8.2";
-    sha256 = "sha256-tmX2mD0AWsihRzuPJdr8DwnKo/4GnGIq+czOavtFpLU=";
+    rev = "v${version}";
+    sha256 = "sha256-siVSZke+anVTaLiJVyDEKvgX+VmS0axa+4721nlgmiw=";
   };
 
-  cargoSha256 = "sha256-vltqwJXf5I7JF7kB/bOSh6b+OvODN3bWuDRAu8RsHnc=";
+  cargoSha256 = "sha256-QMAAKkjWgM/UiOfkNMLQxyGEYYmiSvE0Pd8fZXYyN48=";
 
   buildInputs = pkgs.lib.optionals pkgs.stdenv.isDarwin [
     pkgs.darwin.Security
