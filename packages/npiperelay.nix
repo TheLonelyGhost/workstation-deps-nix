@@ -76,7 +76,7 @@ pkgs.stdenv.mkDerivation {
   ];
 
   # deleteVendor = true;
-  # vendorSha256 = "sha256-9KBecJBMHYgOD0rS5kKuMeBPD6K5CbJ/tRDPExhjwCs=";
+  # vendorHash = "sha256-9KBecJBMHYgOD0rS5kKuMeBPD6K5CbJ/tRDPExhjwCs=";
 
   # This is because npiperelay needs to be compiled for windows and the EXE
   # executed from within WSL, so hardcode the Windows compile target and
