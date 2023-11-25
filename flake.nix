@@ -1,18 +1,25 @@
 {
   description = "Custom tools for nix-based workstations";
-  inputs.nixpkgs.url = "flake:nixpkgs";
-  inputs.flake-utils.url = "flake:flake-utils";
-  inputs.flake-compat = {
-    url = "github:edolstra/flake-compat";
-    flake = false;
-  };
-  inputs.overlays.url = "github:thelonelyghost/blank-overlay-nix";
 
-  inputs.tag.url = "github:thelonelyghost/tag";
-  inputs.tag.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.tag.inputs.overlays.follows = "overlays";
-  inputs.tag.inputs.flake-utils.follows = "flake-utils";
-  inputs.tag.inputs.flake-compat.follows = "flake-compat";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11-small";
+    flake-utils.url = "flake:flake-utils";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    overlays.url = "github:thelonelyghost/blank-overlay-nix";
+
+    tag = {
+      url = "github:thelonelyghost/tag";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        overlays.follows = "overlays";
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+  };
 
   outputs = { self, nixpkgs, flake-utils, flake-compat, overlays, tag }:
     (flake-utils.lib.eachDefaultSystem (system:
