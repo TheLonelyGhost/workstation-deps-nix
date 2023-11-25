@@ -11,7 +11,7 @@
     overlays.url = "github:thelonelyghost/blank-overlay-nix";
 
     tag = {
-      url = "github:thelonelyghost/tag";
+      url = "https://flakehub.com/f/TheLonelyGhost/tag/*.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         overlays.follows = "overlays";
