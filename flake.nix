@@ -42,8 +42,7 @@
         wsl-ssh-agent-relay = import ./packages/wsl/ssh-agent-relay.nix { inherit pkgs npiperelay; };
         wsl-keepassxc-relay = import ./packages/wsl/keepassxc-relay.nix { inherit pkgs npiperelay; };
 
-        git-credential-keepassxc = import ./packages/git-credential-keepassxc.nix { inherit pkgs thelonelyghost; };
-        keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs git-credential-keepassxc; };
+        keepassxc-get = import ./packages/keepassxc-get.nix { inherit pkgs; };
         flakify = import ./packages/flakify.nix { inherit pkgs; };
       in
       {
@@ -64,9 +63,8 @@
           pbcopy = import ./packages/pbcopy.nix { inherit pkgs; };
           pbpaste = import ./packages/pbpaste.nix { inherit pkgs; };
 
-          inherit npiperelay wsl-ssh-agent-relay wsl-keepassxc-relay;
-          inherit git-credential-keepassxc keepassxc-get;
-          inherit flakify;
+          inherit npiperelay wsl-ssh-agent-relay wsl-keepassxc-relay keepassxc-get flakify;
+          inherit (pkgs) git-credential-keepassxc;
         };
       }
     )) // {
